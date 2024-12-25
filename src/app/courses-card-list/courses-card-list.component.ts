@@ -6,6 +6,7 @@ import {
   MatCardContent,
   MatCardHeader,
   MatCardImage,
+  MatCardTitle,
   MatCardTitleGroup,
 } from '@angular/material/card';
 import { NgForOf } from '@angular/common';
@@ -24,7 +25,8 @@ import { RouterLink } from '@angular/router';
     MatCardActions,
     MatButton,
     RouterLink,
-    MatCardTitleGroup,
+    MatCardTitle,
+    MatCard,
   ],
   templateUrl: './courses-card-list.component.html',
   styleUrl: './courses-card-list.component.scss',
