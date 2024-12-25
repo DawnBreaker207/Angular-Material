@@ -40,12 +40,18 @@ import { Course } from '../model/course';
 })
 // implements OnInit
 export class CoursesCardListComponent implements OnInit {
-  private dialog = inject(MatDialog);
-  private responsive!: BreakpointObserver;
   courses = input.required<Course[] | null>();
-  cols = 3;
+
+  cols = 1;
+
   rowHeight = '500px';
+
   handsetPortrait = false;
+
+  constructor(
+    private dialog: MatDialog,
+    private responsive: BreakpointObserver
+  ) {}
 
   ngOnInit() {
     this.responsive
@@ -56,7 +62,7 @@ export class CoursesCardListComponent implements OnInit {
         Breakpoints.HandsetLandscape,
       ])
       .subscribe((result) => {
-        this.cols = 3;
+        this.cols = 1;
         this.rowHeight = '500px';
         this.handsetPortrait = false;
         const breakpoints = result.breakpoints;
