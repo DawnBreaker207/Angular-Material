@@ -6,7 +6,7 @@ import { Course } from '../model/course';
 
 export const courseResolver = (
   route: ActivatedRouteSnapshot,
-  state: RouterStateSnapshot
+  state: RouterStateSnapshot,
 ): Observable<Course> => {
   const courseService = inject(CoursesService);
   return courseService.findCourseById(route.params['id']);

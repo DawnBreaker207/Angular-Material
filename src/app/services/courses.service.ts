@@ -41,7 +41,7 @@ export class CoursesService {
     sortOrder = 'asc',
     pageNumber = 0,
     pageSize = 3,
-    sortColumn = 'seqNo'
+    sortColumn = 'seqNo',
   ): Observable<Lesson[]> {
     return this.http
       .get<ResAPI<Lesson[]>>(`${this.baseUrl}/api/lessons`, {

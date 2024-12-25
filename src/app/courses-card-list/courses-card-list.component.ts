@@ -1,5 +1,5 @@
 import { NgForOf } from '@angular/common';
-import { Component, input } from '@angular/core';
+import { Component, inject, input } from '@angular/core';
 import { MatButton } from '@angular/material/button';
 import {
   MatCard,
@@ -11,6 +11,9 @@ import {
 } from '@angular/material/card';
 import { RouterLink } from '@angular/router';
 import { Course } from '../model/course';
+import { openEditCourseDialog } from '../course-dialog/course-dialog.component';
+import { filter } from 'rxjs';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-courses-card-list',
@@ -32,9 +35,14 @@ import { Course } from '../model/course';
 })
 // implements OnInit
 export class CoursesCardListComponent {
+  dialog = inject(MatDialog);
   courses = input.required<Course[] | null>();
 
   // ngOnInit() {}
 
-  // editCourse(course: Course) {}
+  editCourse(course: Course) {
+    openEditCourseDialog(this.dialog, course)
+      .pipe(filter((val) => !!val))
+      .subscribe((val) => console.log(`New course value: ${val}`));
+  }
 }

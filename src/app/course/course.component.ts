@@ -81,7 +81,7 @@ export class CourseComponent implements OnInit, AfterViewInit {
         this.sort?.direction ?? 'asc',
         this.paginator?.pageIndex ?? 0,
         this.paginator?.pageSize ?? 3,
-        this.sort?.active ?? 'seqNo'
+        this.sort?.active ?? 'seqNo',
       )
       .pipe(
         tap((lessons) => (this.lessons = lessons)),
@@ -90,7 +90,7 @@ export class CourseComponent implements OnInit, AfterViewInit {
           alert('Error loading lessons');
           return throwError(() => err);
         }),
-        finalize(() => (this.loading = false))
+        finalize(() => (this.loading = false)),
       )
       .subscribe();
   }
