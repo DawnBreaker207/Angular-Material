@@ -1,4 +1,5 @@
 import { CdkTextareaAutosize } from '@angular/cdk/text-field';
+import { NgIf } from '@angular/common';
 import { Component, inject } from '@angular/core';
 import {
   ReactiveFormsModule,
@@ -45,6 +46,7 @@ const SAMPLE_TEXT =
     MatCheckbox,
     CdkTextareaAutosize,
     MatHint,
+    NgIf,
   ],
   templateUrl: './create-course-step-1.component.html',
   styleUrl: './create-course-step-1.component.scss',

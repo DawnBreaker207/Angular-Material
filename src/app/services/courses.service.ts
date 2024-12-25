@@ -13,10 +13,10 @@ export class CoursesService {
   http = inject(HttpClient);
   baseUrl = environment.apiUrl;
 
-  findCourseByID(courseId: number): Observable<Course> {
+  findCourseById(courseId: number): Observable<Course> {
     return this.http
-      .get<ResAPI<Course>>(`${this.baseUrl}/api/courses/${courseId}`)
-      .pipe(map((res) => res.payload));
+      .get<Course>(`${this.baseUrl}/api/courses/${courseId}`)
+      .pipe(map((res) => res));
   }
 
   findAllCourses(): Observable<Course[]> {
@@ -41,7 +41,7 @@ export class CoursesService {
     sortOrder = 'asc',
     pageNumber = 0,
     pageSize = 3,
-    sortColumn = 'seqNo',
+    sortColumn = 'seqNo'
   ): Observable<Lesson[]> {
     return this.http
       .get<ResAPI<Lesson[]>>(`${this.baseUrl}/api/lessons`, {

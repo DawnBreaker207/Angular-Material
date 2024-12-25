@@ -1,11 +1,7 @@
 <div class="course">
-  <h2>{{ course?.description }}</h2>
+  <h2>{{ course.description }}</h2>
 
-  <img
-    [src]="course?.iconUrl"
-    alt=""
-    class="course-thumbnail mat-elevation-z8"
-  />
+  <img [src]="course.iconUrl" alt="" class="course-thumbnail" />
 
   <div class="spinner-container" *ngIf="loading">
     <mat-spinner />
@@ -76,7 +72,7 @@
       <tr
         mat-row
         *matRowDef="let lesson; columns: ['expandedDetail']"
-        [class.collapse-detail]="lesson !== expandedLesson"
+        [class.collapsed-detail]="lesson !== expandedLesson"
       ></tr>
     </table>
   </div>
@@ -84,7 +80,7 @@
   <mat-paginator
     class="mat-elevation-z8"
     [pageSize]="3"
-    [pageSizeOptions]="[3, 5, 10]"
-    [length]="course?.lessonsCount"
+    [pageSizeOptions]="[3, 5, 10, 20]"
+    [length]="course.lessonsCount"
   />
 </div>
