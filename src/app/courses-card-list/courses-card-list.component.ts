@@ -1,5 +1,5 @@
 import { NgForOf } from '@angular/common';
-import { Component, inject, input } from '@angular/core';
+import { Component, inject, input, OnInit } from '@angular/core';
 import { MatButton } from '@angular/material/button';
 import {
   MatCard,
@@ -14,6 +14,8 @@ import { Course } from '../model/course';
 import { openEditCourseDialog } from '../course-dialog/course-dialog.component';
 import { filter } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
+import { MatGridList, MatGridTile } from '@angular/material/grid-list';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-courses-card-list',
@@ -29,16 +31,44 @@ import { MatDialog } from '@angular/material/dialog';
     RouterLink,
     MatCardTitle,
     MatCard,
+    MatGridList,
+    MatGridTile,
   ],
   templateUrl: './courses-card-list.component.html',
   styleUrl: './courses-card-list.component.scss',
 })
 // implements OnInit
-export class CoursesCardListComponent {
-  dialog = inject(MatDialog);
+export class CoursesCardListComponent implements OnInit {
+  private dialog = inject(MatDialog);
+  private responsive!: BreakpointObserver;
   courses = input.required<Course[] | null>();
+  cols = 3;
+  rowHeight = '500px';
 
-  // ngOnInit() {}
+  ngOnInit() {
+    this.responsive
+      .observe([
+        Breakpoints.TabletPortrait,
+        Breakpoints.TabletLandscape,
+        Breakpoints.HandsetPortrait,
+        Breakpoints.HandsetLandscape,
+      ])
+      .subscribe((result) => {
+        this.cols = 3;
+        this.rowHeight = '500px';
+        const breakpoints = result.breakpoints;
+        if (breakpoints[Breakpoints.TabletPortrait]) {
+          this.cols = 1;
+        } else if (breakpoints[Breakpoints.HandsetPortrait]) {
+          this.cols = 1;
+          this.rowHeight = '430px';
+        } else if (breakpoints[Breakpoints.HandsetLandscape]) {
+          this.cols = 1;
+        } else if (breakpoints[Breakpoints.TabletLandscape]) {
+          this.cols = 2;
+        }
+      });
+  }
 
   editCourse(course: Course) {
     openEditCourseDialog(this.dialog, course)
