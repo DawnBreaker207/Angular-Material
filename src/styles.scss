@@ -4,8 +4,6 @@
 
 @import "./mixins";
 
-@include responsive-dialogs()
-
-.highlight-date {
+@include responsive-dialogs() .highlight-date {
   background: red;
 }
