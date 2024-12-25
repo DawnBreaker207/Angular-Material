@@ -16,8 +16,8 @@ import { MatTab, MatTabGroup } from '@angular/material/tabs';
 })
 export class HomeComponent implements OnInit {
   coursesService = inject(CoursesService);
-  begginerCourses$: Observable<Course[]>;
-  advancedCourses$: Observable<Course[]>;
+  begginerCourses$: Observable<Course[]> = [];
+  advancedCourses$: Observable<Course[]> = [];
 
   ngOnInit() {
     const courses$ = this.coursesService.findAllCourses();

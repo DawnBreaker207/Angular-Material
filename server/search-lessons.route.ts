@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Request, Response } from 'express';
 import { LESSONS } from './db-data';
 import { setTimeout } from 'timers';
@@ -14,7 +15,7 @@ export function searchLessons(req: Request, res: Response) {
 
   let lessons = Object.values(LESSONS)
     .filter((lesson) => lesson.courseId == courseId)
-    .sort((l1, l2) => {
+    .sort((l1: any, l2: any) => {
       if (l1[sortColumn] > l2[sortColumn]) {
         return 1;
       } else if (l1[sortColumn] < l2[sortColumn]) {

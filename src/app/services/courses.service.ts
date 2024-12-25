@@ -15,7 +15,7 @@ export class CoursesService {
   }
 
   findAllCourses(): Observable<Course[]> {
-    return this.http.get('/api/courses').pipe(map((res) => res['payload']));
+    return this.http.get('/api/courses').pipe(map((res) => res as Course[]));
   }
 
   findAllCoursesLessons(courseId: number): Observable<Lesson[]> {
@@ -26,7 +26,7 @@ export class CoursesService {
           .set('pageNumber', '0')
           .set('pageSize', '1000'),
       })
-      .pipe(map((res) => res['payload']));
+      .pipe(map((res) => res));
   }
 
   findLessons(
@@ -45,6 +45,6 @@ export class CoursesService {
           .set('pageSize', pageSize.toString())
           .set('sortColumn', sortColumn),
       })
-      .pipe(map((res) => res['payload']));
+      .pipe(map((res) => res as Lesson));
   }
 }

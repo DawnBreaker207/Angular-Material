@@ -1,11 +1,10 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import express from 'express';
 import { Application } from 'express';
 import { getAllCourses, getCourseById } from './get-courses.route';
 import { searchLessons } from './search-lessons.route';
-
+import cors from 'cors';
 const app: Application = express();
-
-const cors = require('cors');
 
 app.use(cors({ origin: true }));
 
