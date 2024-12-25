@@ -18,6 +18,7 @@ import {
 import { MatInput } from '@angular/material/input';
 import { MatButton } from '@angular/material/button';
 import { Course } from '../model/course';
+import { MatSuffix } from '@angular/material/form-field';
 
 @Component({
   selector: 'app-course-dialog',
@@ -35,6 +36,7 @@ import { Course } from '../model/course';
     ReactiveFormsModule,
     MatInput,
     MatButton,
+    MatSuffix,
   ],
   templateUrl: './course-dialog.component.html',
   styleUrl: './course-dialog.component.scss',
