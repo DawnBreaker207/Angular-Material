@@ -44,6 +44,7 @@ export class CoursesCardListComponent implements OnInit {
   courses = input.required<Course[] | null>();
   cols = 3;
   rowHeight = '500px';
+  handsetPortrait = false;
 
   ngOnInit() {
     this.responsive
@@ -56,12 +57,14 @@ export class CoursesCardListComponent implements OnInit {
       .subscribe((result) => {
         this.cols = 3;
         this.rowHeight = '500px';
+        this.handsetPortrait = false;
         const breakpoints = result.breakpoints;
         if (breakpoints[Breakpoints.TabletPortrait]) {
           this.cols = 1;
         } else if (breakpoints[Breakpoints.HandsetPortrait]) {
           this.cols = 1;
           this.rowHeight = '430px';
+          this.handsetPortrait = true;
         } else if (breakpoints[Breakpoints.HandsetLandscape]) {
           this.cols = 1;
         } else if (breakpoints[Breakpoints.TabletLandscape]) {
