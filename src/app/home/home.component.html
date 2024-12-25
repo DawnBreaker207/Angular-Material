@@ -1,6 +1,7 @@
 <div class="course-panel">
   <div class="header">
     <h2 class="title">All Courses</h2>
+
     <button
       mat-mini-fab
       routerLink="/add-new-course"
@@ -12,10 +13,12 @@
       <mat-icon class="add-course-btn">add</mat-icon>
     </button>
   </div>
+
   <mat-tab-group>
     <mat-tab label="Beginners">
       <app-courses-card-list [courses]="beginnerCourses$ | async" />
     </mat-tab>
+
     <mat-tab label="Advanced">
       <app-courses-card-list [courses]="advancedCourses$ | async" />
     </mat-tab>

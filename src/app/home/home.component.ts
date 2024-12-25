@@ -1,14 +1,14 @@
+import { AsyncPipe } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
-import { RouterLink } from '@angular/router';
-import { MatIcon } from '@angular/material/icon';
 import { MatMiniFabButton } from '@angular/material/button';
+import { MatIcon } from '@angular/material/icon';
+import { MatTab, MatTabGroup } from '@angular/material/tabs';
+import { MatTooltip } from '@angular/material/tooltip';
+import { RouterLink } from '@angular/router';
 import { EMPTY, map, Observable } from 'rxjs';
+import { CoursesCardListComponent } from '../courses-card-list/courses-card-list.component';
 import { Course } from '../model/course';
 import { CoursesService } from '../services/courses.service';
-import { MatTab, MatTabGroup } from '@angular/material/tabs';
-import { CoursesCardListComponent } from '../courses-card-list/courses-card-list.component';
-import { AsyncPipe } from '@angular/common';
-import { MatTooltip } from '@angular/material/tooltip';
 
 @Component({
   selector: 'app-home',

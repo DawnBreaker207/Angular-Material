@@ -58,7 +58,7 @@ export class CourseComponent implements OnInit, AfterViewInit {
   coursesService = inject(CoursesService);
   course!: Course;
   lessons: Lesson[] = [];
-  loading: boolean = false;
+  loading = false;
   displayedColumns = ['select', 'seqNo', 'description', 'duration'];
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;

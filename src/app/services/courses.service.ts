@@ -1,10 +1,10 @@
-import { inject, Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
+import { inject, Injectable } from '@angular/core';
 import { map, Observable } from 'rxjs';
-import { Course } from '../model/course';
-import { ResAPI } from '../model/resAPI';
-import { Lesson } from '../model/lesson';
 import { environment } from '../../environments/environment.development';
+import { Course } from '../model/course';
+import { Lesson } from '../model/lesson';
+import { ResAPI } from '../model/resAPI';
 
 @Injectable({
   providedIn: 'root',

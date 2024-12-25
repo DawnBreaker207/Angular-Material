@@ -1,5 +1,6 @@
-import { Component, input, OnInit } from '@angular/core';
-import { Course } from '../model/course';
+import { NgForOf } from '@angular/common';
+import { Component, input } from '@angular/core';
+import { MatButton } from '@angular/material/button';
 import {
   MatCard,
   MatCardActions,
@@ -7,11 +8,9 @@ import {
   MatCardHeader,
   MatCardImage,
   MatCardTitle,
-  MatCardTitleGroup,
 } from '@angular/material/card';
-import { NgForOf } from '@angular/common';
-import { MatButton } from '@angular/material/button';
 import { RouterLink } from '@angular/router';
+import { Course } from '../model/course';
 
 @Component({
   selector: 'app-courses-card-list',
@@ -31,10 +30,11 @@ import { RouterLink } from '@angular/router';
   templateUrl: './courses-card-list.component.html',
   styleUrl: './courses-card-list.component.scss',
 })
-export class CoursesCardListComponent implements OnInit {
+// implements OnInit
+export class CoursesCardListComponent {
   courses = input.required<Course[] | null>();
 
-  ngOnInit() {}
+  // ngOnInit() {}
 
-  editCourse(course: Course) {}
+  // editCourse(course: Course) {}
 }

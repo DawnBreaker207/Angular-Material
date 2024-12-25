@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import { RouterLink, RouterOutlet } from '@angular/router';
-import { MatSidenav, MatSidenavContainer } from '@angular/material/sidenav';
-import { MatToolbar } from '@angular/material/toolbar';
-import { MatAnchor, MatButton, MatIconButton } from '@angular/material/button';
+import { MatAnchor, MatIconButton } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
 import { MatListItem, MatNavList } from '@angular/material/list';
 import { MatMenu, MatMenuItem, MatMenuTrigger } from '@angular/material/menu';
+import { MatSidenav, MatSidenavContainer } from '@angular/material/sidenav';
+import { MatToolbar } from '@angular/material/toolbar';
+import { RouterLink, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -19,7 +19,6 @@ import { MatMenu, MatMenuItem, MatMenuTrigger } from '@angular/material/menu';
     MatNavList,
     MatListItem,
     RouterLink,
-    MatButton,
     MatAnchor,
     MatMenu,
     MatMenuItem,

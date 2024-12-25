@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { MatButton } from '@angular/material/button';
 import {
   MatStep,
   MatStepLabel,
@@ -8,7 +9,6 @@ import {
 } from '@angular/material/stepper';
 import { CreateCourseStep1Component } from './create-course-step-1/create-course-step-1.component';
 import { CreateCourseStep2Component } from './create-course-step-2/create-course-step-2.component';
-import { MatButton } from '@angular/material/button';
 
 @Component({
   selector: 'app-create-course',
