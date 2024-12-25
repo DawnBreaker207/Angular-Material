@@ -1,5 +1,11 @@
-import { Component, Inject, inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { MatButton } from '@angular/material/button';
+import {
+  MatDatepicker,
+  MatDatepickerInput,
+  MatDatepickerToggle,
+} from '@angular/material/datepicker';
 import {
   MAT_DIALOG_DATA,
   MatDialog,
@@ -9,16 +15,10 @@ import {
   MatDialogRef,
   MatDialogTitle,
 } from '@angular/material/dialog';
-import { MatFormField, MatOption, MatSelect } from '@angular/material/select';
-import {
-  MatDatepicker,
-  MatDatepickerInput,
-  MatDatepickerToggle,
-} from '@angular/material/datepicker';
-import { MatInput } from '@angular/material/input';
-import { MatButton } from '@angular/material/button';
-import { Course } from '../model/course';
 import { MatSuffix } from '@angular/material/form-field';
+import { MatInput } from '@angular/material/input';
+import { MatFormField, MatOption, MatSelect } from '@angular/material/select';
+import { Course } from '../model/course';
 
 @Component({
   selector: 'app-course-dialog',
@@ -41,8 +41,9 @@ import { MatSuffix } from '@angular/material/form-field';
   templateUrl: './course-dialog.component.html',
   styleUrl: './course-dialog.component.scss',
 })
-export class CourseDialogComponent implements OnInit {
+export class CourseDialogComponent {
   description = '';
+
   form = this.fb.group({
     description: [this.course.description, Validators.required],
     category: [this.course.category, Validators.required],
@@ -57,8 +58,6 @@ export class CourseDialogComponent implements OnInit {
   ) {
     this.description = course.description;
   }
-
-  ngOnInit() {}
 
   close() {
     this.dialogRef.close();

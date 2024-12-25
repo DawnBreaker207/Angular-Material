@@ -104,7 +104,7 @@ export class TreeDemoComponent implements OnInit {
     (node: CourseNode, level: number): CourseFlatNode => {
       return {
         name: node.name,
-        expandable: node.children?.length > 0,
+        expandable: !!node.children?.length,
         level,
       };
     },
@@ -124,7 +124,7 @@ export class TreeDemoComponent implements OnInit {
   }
 
   hasNestedChild(index: number, node: CourseNode) {
-    return node?.children.length > 0;
+    return !!node.children?.length;
   }
 
   hasFlatChild(index: number, node: CourseFlatNode) {

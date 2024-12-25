@@ -1,4 +1,5 @@
-import { NgForOf } from '@angular/common';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { NgClass, NgForOf } from '@angular/common';
 import { Component, inject, input, OnInit } from '@angular/core';
 import { MatButton } from '@angular/material/button';
 import {
@@ -9,13 +10,12 @@ import {
   MatCardImage,
   MatCardTitle,
 } from '@angular/material/card';
-import { RouterLink } from '@angular/router';
-import { Course } from '../model/course';
-import { openEditCourseDialog } from '../course-dialog/course-dialog.component';
-import { filter } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { MatGridList, MatGridTile } from '@angular/material/grid-list';
-import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+import { RouterLink } from '@angular/router';
+import { filter } from 'rxjs';
+import { openEditCourseDialog } from '../course-dialog/course-dialog.component';
+import { Course } from '../model/course';
 
 @Component({
   selector: 'app-courses-card-list',
@@ -33,6 +33,7 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
     MatCard,
     MatGridList,
     MatGridTile,
+    NgClass,
   ],
   templateUrl: './courses-card-list.component.html',
   styleUrl: './courses-card-list.component.scss',
