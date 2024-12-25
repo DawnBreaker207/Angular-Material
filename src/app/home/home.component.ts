@@ -8,6 +8,7 @@ import { CoursesService } from '../services/courses.service';
 import { MatTab, MatTabGroup } from '@angular/material/tabs';
 import { CoursesCardListComponent } from '../courses-card-list/courses-card-list.component';
 import { AsyncPipe } from '@angular/common';
+import { MatTooltip } from '@angular/material/tooltip';
 
 @Component({
   selector: 'app-home',
@@ -20,6 +21,7 @@ import { AsyncPipe } from '@angular/common';
     MatTab,
     CoursesCardListComponent,
     AsyncPipe,
+    MatTooltip,
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
