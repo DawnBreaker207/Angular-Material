@@ -2,31 +2,38 @@ import { inject, Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { map, Observable } from 'rxjs';
 import { Course } from '../model/course';
+import { ResAPI } from '../model/resAPI';
 import { Lesson } from '../model/lesson';
+import { environment } from '../../environments/environment.development';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CoursesService {
   http = inject(HttpClient);
+  baseUrl = environment.apiUrl;
 
   findCourseByID(courseId: number): Observable<Course> {
-    return this.http.get<Course>(`/api/courses/${courseId}`);
+    return this.http
+      .get<ResAPI<Course>>(`${this.baseUrl}/api/courses/${courseId}`)
+      .pipe(map((res) => res.payload));
   }
 
   findAllCourses(): Observable<Course[]> {
-    return this.http.get('/api/courses').pipe(map((res) => res as Course[]));
+    return this.http
+      .get<ResAPI<Course[]>>(`${this.baseUrl}/api/courses`)
+      .pipe(map((res) => res.payload));
   }
 
   findAllCoursesLessons(courseId: number): Observable<Lesson[]> {
     return this.http
-      .get<Lesson[]>(`/api/lessons`, {
+      .get<ResAPI<Lesson[]>>(`${this.baseUrl}/api/lessons`, {
         params: new HttpParams()
           .set('courseId', courseId.toString())
           .set('pageNumber', '0')
           .set('pageSize', '1000'),
       })
-      .pipe(map((res) => res));
+      .pipe(map((res) => res.payload));
   }
 
   findLessons(
@@ -37,7 +44,7 @@ export class CoursesService {
     sortColumn = 'seqNo',
   ): Observable<Lesson> {
     return this.http
-      .get(`/api/lessons`, {
+      .get<ResAPI<Lesson>>(`${this.baseUrl}/api/lessons`, {
         params: new HttpParams()
           .set('courseId', courseId.toString())
           .set('sortOrder', sortOrder)
@@ -45,6 +52,6 @@ export class CoursesService {
           .set('pageSize', pageSize.toString())
           .set('sortColumn', sortColumn),
       })
-      .pipe(map((res) => res as Lesson));
+      .pipe(map((res) => res.payload));
   }
 }

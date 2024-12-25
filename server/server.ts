@@ -4,6 +4,7 @@ import { Application } from 'express';
 import { getAllCourses, getCourseById } from './get-courses.route';
 import { searchLessons } from './search-lessons.route';
 import cors from 'cors';
+
 const app: Application = express();
 
 app.use(cors({ origin: true }));
