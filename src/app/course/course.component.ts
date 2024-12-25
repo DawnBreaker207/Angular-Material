@@ -26,6 +26,8 @@ import { MatProgressSpinner } from '@angular/material/progress-spinner';
 import { NgIf } from '@angular/common';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort, MatSortHeader } from '@angular/material/sort';
+import { SelectionModel } from '@angular/cdk/collections';
+import { MatCheckbox } from '@angular/material/checkbox';
 
 @Component({
   selector: 'app-course',
@@ -46,6 +48,7 @@ import { MatSort, MatSortHeader } from '@angular/material/sort';
     MatPaginator,
     MatSort,
     MatSortHeader,
+    MatCheckbox,
   ],
   templateUrl: './course.component.html',
   styleUrl: './course.component.scss',
@@ -56,12 +59,14 @@ export class CourseComponent implements OnInit, AfterViewInit {
   course!: Course;
   lessons: Lesson[] = [];
   loading: boolean = false;
-  displayedColumns = ['seqNo', 'description', 'duration'];
+  displayedColumns = ['select', 'seqNo', 'description', 'duration'];
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
 
   @ViewChild(MatSort)
   sort!: MatSort;
+  expandedLesson!: Lesson = null;
+  selection = new SelectionModel<Lesson>(true, []);
 
   ngOnInit() {
     this.course = this.route.snapshot.data['course'];
@@ -92,10 +97,35 @@ export class CourseComponent implements OnInit, AfterViewInit {
       .subscribe();
   }
 
+  onToggleLesson(lesson: Lesson) {
+    if (lesson === this.expandedLesson) {
+      this.expandedLesson = null;
+    } else {
+      this.expandedLesson = lesson;
+    }
+  }
+
   ngAfterViewInit() {
     this.sort.sortChange.subscribe(() => (this.paginator.pageIndex = 0));
     merge(this.sort.sortChange, this.paginator.page)
       .pipe(tap(() => this.loadLessonsPage()))
       .subscribe();
+  }
+
+  onLessonToggled(lesson: Lesson) {
+    this.selection.toggle(lesson);
+    console.log(this.selection.selected);
+  }
+
+  isAllSelected() {
+    return (this.selection.selected?.length = this.lessons?.length);
+  }
+
+  toggleAll() {
+    if (this.isAllSelected()) {
+      this.selection.clear();
+    } else {
+      this.selection.selected(...this.lessons);
+    }
   }
 }
