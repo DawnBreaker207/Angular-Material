@@ -38,13 +38,13 @@ export class CoursesService {
 
   findLessons(
     courseId: number,
-    sortOrder: 'asc',
+    sortOrder = 'asc',
     pageNumber = 0,
     pageSize = 3,
     sortColumn = 'seqNo',
-  ): Observable<Lesson> {
+  ): Observable<Lesson[]> {
     return this.http
-      .get<ResAPI<Lesson>>(`${this.baseUrl}/api/lessons`, {
+      .get<ResAPI<Lesson[]>>(`${this.baseUrl}/api/lessons`, {
         params: new HttpParams()
           .set('courseId', courseId.toString())
           .set('sortOrder', sortOrder)

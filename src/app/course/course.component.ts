@@ -1,3 +1,5 @@
+import { SelectionModel } from '@angular/cdk/collections';
+import { NgIf } from '@angular/common';
 import {
   AfterViewInit,
   Component,
@@ -5,9 +7,10 @@ import {
   OnInit,
   ViewChild,
 } from '@angular/core';
-import { Course } from '../model/course';
-import { ActivatedRoute } from '@angular/router';
-import { CoursesService } from '../services/courses.service';
+import { MatCheckbox } from '@angular/material/checkbox';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatProgressSpinner } from '@angular/material/progress-spinner';
+import { MatSort, MatSortHeader } from '@angular/material/sort';
 import {
   MatCell,
   MatCellDef,
@@ -20,14 +23,11 @@ import {
   MatRowDef,
   MatTable,
 } from '@angular/material/table';
-import { Lesson } from '../model/lesson';
+import { ActivatedRoute } from '@angular/router';
 import { catchError, finalize, merge, tap, throwError } from 'rxjs';
-import { MatProgressSpinner } from '@angular/material/progress-spinner';
-import { NgIf } from '@angular/common';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatSort, MatSortHeader } from '@angular/material/sort';
-import { SelectionModel } from '@angular/cdk/collections';
-import { MatCheckbox } from '@angular/material/checkbox';
+import { Course } from '../model/course';
+import { Lesson } from '../model/lesson';
+import { CoursesService } from '../services/courses.service';
 
 @Component({
   selector: 'app-course',
@@ -65,7 +65,7 @@ export class CourseComponent implements OnInit, AfterViewInit {
 
   @ViewChild(MatSort)
   sort!: MatSort;
-  expandedLesson!: Lesson = null;
+  expandedLesson: Lesson | null = null;
   selection = new SelectionModel<Lesson>(true, []);
 
   ngOnInit() {
@@ -84,14 +84,12 @@ export class CourseComponent implements OnInit, AfterViewInit {
         this.sort?.active ?? 'seqNo',
       )
       .pipe(
-        tap(
-          (lessons) => (this.lessons = lessons),
-          catchError((err) => {
-            console.log(`Error loading lessons ${err}`);
-            alert('Error loading lessons');
-            return throwError(err);
-          }),
-        ),
+        tap((lessons) => (this.lessons = lessons)),
+        catchError((err) => {
+          console.log(`Error loading lessons ${err}`);
+          alert('Error loading lessons');
+          return throwError(() => err);
+        }),
         finalize(() => (this.loading = false)),
       )
       .subscribe();
@@ -118,14 +116,14 @@ export class CourseComponent implements OnInit, AfterViewInit {
   }
 
   isAllSelected() {
-    return (this.selection.selected?.length = this.lessons?.length);
+    return (this.selection.selected.length = this.lessons?.length);
   }
 
   toggleAll() {
     if (this.isAllSelected()) {
       this.selection.clear();
     } else {
-      this.selection.selected(...this.lessons);
+      this.selection.select(...this.lessons);
     }
   }
 }
