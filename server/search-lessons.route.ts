@@ -28,7 +28,7 @@ export function searchLessons(req: Request, res: Response) {
     lessons = lessons.filter(
       (lesson) =>
         lesson.description.trim().toLowerCase().search(filter.toLowerCase()) >=
-        0
+        0,
     );
   }
 

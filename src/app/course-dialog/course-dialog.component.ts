@@ -5,8 +5,6 @@ import { Component } from '@angular/core';
   standalone: true,
   imports: [],
   templateUrl: './course-dialog.component.html',
-  styleUrl: './course-dialog.component.scss'
+  styleUrl: './course-dialog.component.scss',
 })
-export class CourseDialogComponent {
-
-}
+export class CourseDialogComponent {}
