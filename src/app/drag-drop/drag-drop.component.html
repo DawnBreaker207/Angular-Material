@@ -1,9 +1,9 @@
 <div class="drag-drop-container" cdkDropListGroup>
   <div class="pending">
-    <h3>Lessons to watch</h3>
+    <h3>Lessons To Watch:</h3>
     <div
       cdkDropList
-      class="lesson-list drag-drop-list"
+      class="lessons-list drag-drop-list"
       [cdkDropListData]="lessons"
       (cdkDropListDropped)="dropMultiList($event)"
     >
@@ -13,12 +13,12 @@
       </div>
     </div>
   </div>
-  
+
   <div class="done">
     <h3>Done:</h3>
     <div
       cdkDropList
-      class="lesson-list drag-drop-list"
+      class="lessons-list drag-drop-list"
       [cdkDropListData]="done"
       (cdkDropListDropped)="dropMultiList($event)"
     >

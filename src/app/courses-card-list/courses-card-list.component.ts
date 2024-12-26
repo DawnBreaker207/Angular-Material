@@ -50,7 +50,7 @@ export class CoursesCardListComponent implements OnInit {
 
   constructor(
     private dialog: MatDialog,
-    private responsive: BreakpointObserver
+    private responsive: BreakpointObserver,
   ) {}
 
   ngOnInit() {

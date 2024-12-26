@@ -1,4 +1,7 @@
+import { FlatTreeControl, NestedTreeControl } from '@angular/cdk/tree';
 import { Component, OnInit } from '@angular/core';
+import { MatIconButton } from '@angular/material/button';
+import { MatIcon } from '@angular/material/icon';
 import {
   MatNestedTreeNode,
   MatTree,
@@ -11,9 +14,6 @@ import {
   MatTreeNodePadding,
   MatTreeNodeToggle,
 } from '@angular/material/tree';
-import { FlatTreeControl, NestedTreeControl } from '@angular/cdk/tree';
-import { MatIconButton } from '@angular/material/button';
-import { MatIcon } from '@angular/material/icon';
 
 interface CourseNode {
   name: string;
@@ -88,7 +88,6 @@ const TREE_DATA: CourseNode[] = [
   styleUrl: './tree-demo.component.scss',
 })
 export class TreeDemoComponent implements OnInit {
-  protected readonly TREE_DATA = TREE_DATA;
   // NESTED TREE
   nestedDataSource = new MatTreeNestedDataSource<CourseNode>();
   nestedTreeControl = new NestedTreeControl<CourseNode>(
@@ -104,7 +103,7 @@ export class TreeDemoComponent implements OnInit {
     (node: CourseNode, level: number): CourseFlatNode => {
       return {
         name: node.name,
-        expandable: !!node.children?.length,
+        expandable: (node.children || [])?.length > 0,
         level,
       };
     },
@@ -124,7 +123,7 @@ export class TreeDemoComponent implements OnInit {
   }
 
   hasNestedChild(index: number, node: CourseNode) {
-    return !!node.children?.length;
+    return (node.children || [])?.length > 0;
   }
 
   hasFlatChild(index: number, node: CourseFlatNode) {
